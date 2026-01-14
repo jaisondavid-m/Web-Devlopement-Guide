@@ -1,0 +1,762 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="TechInsights - Your source for technology news, tutorials, and digital lifestyle tips. Learn about web development, AI, cybersecurity, and more.">
+    <meta name="keywords" content="technology, web development, programming, AI, tutorials, tech news">
+    <title>TechInsights - Technology Articles & Tutorials</title>
+    
+    <!-- Google AdSense -->
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3448484444007213"
+     crossorigin="anonymous"></script>
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Georgia', serif;
+            background: #fafafa;
+            color: #333;
+            line-height: 1.8;
+        }
+
+        /* Header */
+        header {
+            background: #1a1a2e;
+            color: white;
+            padding: 20px 0;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        nav {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 28px;
+            font-weight: bold;
+            font-family: 'Arial', sans-serif;
+        }
+
+        .logo span {
+            color: #00adb5;
+        }
+
+        .nav-menu {
+            display: flex;
+            gap: 30px;
+            list-style: none;
+        }
+
+        .nav-menu a {
+            color: white;
+            text-decoration: none;
+            font-family: 'Arial', sans-serif;
+            font-size: 16px;
+            transition: color 0.3s;
+        }
+
+        .nav-menu a:hover {
+            color: #00adb5;
+        }
+
+        /* Container */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+
+        /* Main Layout */
+        .main-layout {
+            display: grid;
+            grid-template-columns: 1fr 350px;
+            gap: 40px;
+        }
+
+        /* Article Section */
+        .article-content {
+            background: white;
+            padding: 40px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+        }
+
+        .article-header {
+            margin-bottom: 30px;
+        }
+
+        .article-category {
+            display: inline-block;
+            background: #00adb5;
+            color: white;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 14px;
+            font-family: 'Arial', sans-serif;
+            margin-bottom: 15px;
+        }
+
+        h1 {
+            font-size: 2.5em;
+            margin-bottom: 15px;
+            color: #1a1a2e;
+            line-height: 1.3;
+        }
+
+        .article-meta {
+            color: #666;
+            font-size: 14px;
+            font-family: 'Arial', sans-serif;
+            margin-bottom: 20px;
+        }
+
+        .article-meta span {
+            margin-right: 20px;
+        }
+
+        .featured-image {
+            width: 100%;
+            height: 400px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border-radius: 8px;
+            margin-bottom: 30px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 24px;
+        }
+
+        .article-body h2 {
+            font-size: 1.8em;
+            margin: 30px 0 15px 0;
+            color: #1a1a2e;
+        }
+
+        .article-body h3 {
+            font-size: 1.4em;
+            margin: 25px 0 12px 0;
+            color: #2d3748;
+        }
+
+        .article-body p {
+            margin-bottom: 20px;
+            font-size: 18px;
+        }
+
+        .article-body ul, .article-body ol {
+            margin: 20px 0 20px 30px;
+        }
+
+        .article-body li {
+            margin-bottom: 10px;
+            font-size: 18px;
+        }
+
+        .highlight-box {
+            background: #f0f9ff;
+            border-left: 4px solid #00adb5;
+            padding: 20px;
+            margin: 25px 0;
+            border-radius: 4px;
+        }
+
+        .code-block {
+            background: #282c34;
+            color: #abb2bf;
+            padding: 20px;
+            border-radius: 6px;
+            margin: 20px 0;
+            overflow-x: auto;
+            font-family: 'Courier New', monospace;
+            font-size: 14px;
+            line-height: 1.6;
+        }
+
+        /* Sidebar */
+        .sidebar {
+            position: sticky;
+            top: 20px;
+            align-self: start;
+        }
+
+        .sidebar-widget {
+            background: white;
+            padding: 25px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            margin-bottom: 30px;
+        }
+
+        .sidebar-widget h3 {
+            margin-bottom: 20px;
+            color: #1a1a2e;
+            font-size: 1.3em;
+        }
+
+        .recent-post {
+            padding: 15px 0;
+            border-bottom: 1px solid #eee;
+        }
+
+        .recent-post:last-child {
+            border-bottom: none;
+        }
+
+        .recent-post h4 {
+            font-size: 16px;
+            margin-bottom: 8px;
+            color: #1a1a2e;
+            cursor: pointer;
+        }
+
+        .recent-post h4:hover {
+            color: #00adb5;
+        }
+
+        .recent-post p {
+            font-size: 13px;
+            color: #666;
+            font-family: 'Arial', sans-serif;
+        }
+
+        .tag-cloud {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .tag {
+            background: #f0f0f0;
+            padding: 8px 15px;
+            border-radius: 20px;
+            font-size: 14px;
+            font-family: 'Arial', sans-serif;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+
+        .tag:hover {
+            background: #00adb5;
+            color: white;
+        }
+
+        /* Ad Containers */
+        .ad-space {
+            margin: 30px auto;
+            text-align: center;
+        }
+
+        /* Footer */
+        footer {
+            background: #1a1a2e;
+            color: white;
+            padding: 50px 20px 20px 20px;
+            margin-top: 60px;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr;
+            gap: 40px;
+            margin-bottom: 30px;
+        }
+
+        .footer-section h3 {
+            margin-bottom: 20px;
+            color: #00adb5;
+        }
+
+        .footer-section p {
+            color: #ccc;
+            line-height: 1.6;
+            font-family: 'Arial', sans-serif;
+        }
+
+        .footer-links {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 12px;
+        }
+
+        .footer-links a {
+            color: #ccc;
+            text-decoration: none;
+            font-family: 'Arial', sans-serif;
+        }
+
+        .footer-links a:hover {
+            color: #00adb5;
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid #333;
+            color: #999;
+            font-family: 'Arial', sans-serif;
+        }
+
+        /* Responsive */
+        @media (max-width: 968px) {
+            .main-layout {
+                grid-template-columns: 1fr;
+            }
+
+            .sidebar {
+                position: static;
+            }
+
+            h1 {
+                font-size: 2em;
+            }
+
+            .article-content {
+                padding: 25px;
+            }
+
+            .footer-content {
+                grid-template-columns: 1fr;
+            }
+
+            .nav-menu {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <nav>
+            <div class="logo">Tech<span>Insights</span></div>
+            <ul class="nav-menu">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#tutorials">Tutorials</a></li>
+                <li><a href="#articles">Articles</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Top Ad -->
+    <div class="container">
+        <div class="ad-space">
+            <ins class="adsbygoogle"
+                 style="display:inline-block;width:728px;height:90px"
+                 data-ad-client="ca-pub-3448484444007213"
+                 data-ad-slot="1234567890"></ins>
+            <script>
+                 (adsbygoogle = window.adsbygoogle || []).push({});
+            </script>
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <div class="container">
+        <div class="main-layout">
+            <!-- Article Content -->
+            <article class="article-content">
+                <div class="article-header">
+                    <span class="article-category">Web Development</span>
+                    <h1>The Complete Guide to Modern Web Development in 2025</h1>
+                    <div class="article-meta">
+                        <span>📅 January 14, 2025</span>
+                        <span>👤 By Sarah Johnson</span>
+                        <span>⏱️ 12 min read</span>
+                    </div>
+                </div>
+
+                <div class="featured-image">
+                    📱 Web Development 2025
+                </div>
+
+                <div class="article-body">
+                    <p>
+                        The landscape of web development has transformed dramatically over the past few years. As we navigate through 2025, developers face an exciting array of tools, frameworks, and best practices that are reshaping how we build for the web. Whether you're a seasoned developer or just starting your journey, understanding these modern approaches is crucial for success.
+                    </p>
+
+                    <p>
+                        In this comprehensive guide, we'll explore the essential technologies, methodologies, and trends that define modern web development. From choosing the right framework to implementing best practices in performance optimization, this article will equip you with the knowledge needed to build cutting-edge web applications.
+                    </p>
+
+                    <h2>Understanding Modern Web Architecture</h2>
+
+                    <p>
+                        Modern web applications are built on sophisticated architectures that prioritize scalability, performance, and user experience. The shift from monolithic applications to microservices and serverless architectures has fundamentally changed how we approach web development.
+                    </p>
+
+                    <div class="highlight-box">
+                        <strong>Key Insight:</strong> The most successful web applications in 2025 leverage a combination of static site generation, server-side rendering, and client-side interactivity to deliver optimal performance across all devices and network conditions.
+                    </div>
+
+                    <p>
+                        When planning your web application architecture, consider these critical factors: scalability requirements, team expertise, deployment infrastructure, and long-term maintenance costs. Each decision you make at this stage will have lasting implications for your project's success.
+                    </p>
+
+                    <!-- Mid-Article Ad -->
+                    <div class="ad-space">
+                        <ins class="adsbygoogle"
+                             style="display:inline-block;width:336px;height:280px"
+                             data-ad-client="ca-pub-3448484444007213"
+                             data-ad-slot="2345678901"></ins>
+                        <script>
+                             (adsbygoogle = window.adsbygoogle || []).push({});
+                        </script>
+                    </div>
+
+                    <h2>Choosing the Right Framework</h2>
+
+                    <p>
+                        The framework you choose will significantly impact your development workflow and application performance. In 2025, several frameworks have emerged as industry leaders, each with unique strengths and use cases.
+                    </p>
+
+                    <h3>React and the Component-Based Revolution</h3>
+
+                    <p>
+                        React continues to dominate the frontend landscape with its powerful component-based architecture. The introduction of Server Components has revolutionized how we think about data fetching and rendering strategies. Developers can now build highly interactive applications while maintaining excellent performance characteristics.
+                    </p>
+
+                    <p>
+                        The React ecosystem offers incredible flexibility through libraries like Next.js, which provides built-in solutions for routing, server-side rendering, and static site generation. This comprehensive approach reduces the complexity of configuration while maintaining the flexibility developers need.
+                    </p>
+
+                    <h3>Vue.js: The Progressive Framework</h3>
+
+                    <p>
+                        Vue.js has carved out a significant niche with its approachable learning curve and excellent documentation. The framework's progressive nature means developers can adopt it incrementally, making it ideal for both new projects and gradual migrations of existing applications.
+                    </p>
+
+                    <p>
+                        Vue 3's Composition API brings improved code organization and reusability, making it easier to manage complex application state. Combined with Nuxt.js for server-side rendering capabilities, Vue provides a complete solution for modern web development.
+                    </p>
+
+                    <h3>Angular: Enterprise-Grade Solutions</h3>
+
+                    <p>
+                        For large-scale enterprise applications, Angular remains a strong choice. Its opinionated structure and comprehensive tooling provide consistency across large development teams. The framework's built-in features for dependency injection, routing, and form handling reduce the need for external dependencies.
+                    </p>
+
+                    <div class="code-block">
+// Example: Modern React Component with Hooks
+import { useState, useEffect } from 'react';
+
+function DataFetcher() {
+  const [data, setData] = useState(null);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    fetchData()
+      .then(result => {
+        setData(result);
+        setLoading(false);
+      });
+  }, []);
+
+  return loading ? <Spinner /> : <DataDisplay data={data} />;
+}
+                    </div>
+
+                    <h2>Performance Optimization Strategies</h2>
+
+                    <p>
+                        Performance is no longer optional—it's a critical factor in user satisfaction and SEO rankings. Modern web applications must load quickly and respond instantly to user interactions, regardless of device or network conditions.
+                    </p>
+
+                    <h3>Core Web Vitals and User Experience</h3>
+
+                    <p>
+                        Google's Core Web Vitals have become the standard metrics for measuring web performance. These metrics—Largest Contentful Paint (LCP), First Input Delay (FID), and Cumulative Layout Shift (CLS)—directly impact search rankings and user satisfaction.
+                    </p>
+
+                    <p>
+                        To optimize LCP, focus on efficient image loading strategies, including modern formats like WebP and AVIF, lazy loading for below-the-fold content, and utilizing CDNs for faster asset delivery. Implementing these techniques can dramatically improve perceived performance.
+                    </p>
+
+                    <h3>Code Splitting and Lazy Loading</h3>
+
+                    <p>
+                        Modern bundlers like Webpack and Vite make code splitting straightforward. By breaking your application into smaller chunks, you ensure users only download the code they need for their current page. This approach significantly reduces initial load times and improves overall performance.
+                    </p>
+
+                    <p>
+                        Dynamic imports enable sophisticated loading strategies where components and features load on-demand. This is particularly valuable for large applications with numerous features that users may not access in a single session.
+                    </p>
+
+                    <!-- Another Ad Space -->
+                    <div class="ad-space">
+                        <ins class="adsbygoogle"
+                             style="display:block"
+                             data-ad-format="fluid"
+                             data-ad-layout-key="-6t+ed+2i-1n-4w"
+                             data-ad-client="ca-pub-3448484444007213"
+                             data-ad-slot="3456789012"></ins>
+                        <script>
+                             (adsbygoogle = window.adsbygoogle || []).push({});
+                        </script>
+                    </div>
+
+                    <h2>State Management in Modern Applications</h2>
+
+                    <p>
+                        Effective state management remains one of the most challenging aspects of frontend development. As applications grow in complexity, choosing the right state management solution becomes crucial for maintainability and performance.
+                    </p>
+
+                    <h3>Local vs. Global State</h3>
+
+                    <p>
+                        Understanding when to use local component state versus global application state is fundamental. Not every piece of data needs to be globally accessible—overusing global state can lead to unnecessary re-renders and performance issues.
+                    </p>
+
+                    <p>
+                        Modern approaches favor keeping state as local as possible, only elevating it to global status when multiple components truly need access. Tools like React Context for occasional global state and specialized libraries like Redux or Zustand for complex state management provide flexible solutions.
+                    </p>
+
+                    <h3>Server State vs. Client State</h3>
+
+                    <p>
+                        The distinction between server state and client state has become increasingly important. Libraries like React Query and SWR specialize in managing server state, handling caching, background updates, and synchronization automatically.
+                    </p>
+
+                    <p>
+                        By separating server state concerns from client state logic, applications become more maintainable and performant. These libraries reduce boilerplate code while providing sophisticated caching strategies out of the box.
+                    </p>
+
+                    <h2>Security Best Practices</h2>
+
+                    <p>
+                        Security cannot be an afterthought in modern web development. With increasing sophistication of attacks and growing privacy regulations, implementing robust security measures is essential from the start of any project.
+                    </p>
+
+                    <h3>Authentication and Authorization</h3>
+
+                    <p>
+                        Implementing secure authentication requires understanding modern protocols like OAuth 2.0 and OpenID Connect. These industry standards provide secure, scalable authentication mechanisms that protect user credentials and personal information.
+                    </p>
+
+                    <p>
+                        Multi-factor authentication (MFA) has become standard for applications handling sensitive data. By requiring multiple forms of verification, MFA significantly reduces the risk of unauthorized access even if passwords are compromised.
+                    </p>
+
+                    <h3>Content Security Policy and XSS Prevention</h3>
+
+                    <p>
+                        Cross-site scripting (XSS) attacks remain a critical threat to web applications. Implementing a strong Content Security Policy (CSP) helps prevent these attacks by controlling which resources can be loaded and executed.
+                    </p>
+
+                    <p>
+                        Modern frameworks provide built-in XSS protection through automatic escaping of user input, but developers must remain vigilant. Never trust user input, always sanitize data before rendering, and use security-focused linting rules to catch potential vulnerabilities during development.
+                    </p>
+
+                    <h2>Testing and Quality Assurance</h2>
+
+                    <p>
+                        Comprehensive testing strategies ensure application reliability and reduce bugs in production. Modern testing approaches combine unit tests, integration tests, and end-to-end tests to provide confidence in code quality.
+                    </p>
+
+                    <h3>Test-Driven Development</h3>
+
+                    <p>
+                        Test-Driven Development (TDD) has proven its value in producing robust, maintainable code. By writing tests before implementation, developers gain clarity on requirements and create more testable, modular code structures.
+                    </p>
+
+                    <p>
+                        Tools like Jest and Testing Library make testing React components straightforward and intuitive. These libraries focus on testing behavior rather than implementation details, resulting in more maintainable test suites that don't break with refactoring.
+                    </p>
+
+                    <h3>End-to-End Testing</h3>
+
+                    <p>
+                        End-to-end testing tools like Playwright and Cypress simulate real user interactions, catching integration issues that unit tests might miss. These tools provide confidence that critical user flows work correctly across different browsers and devices.
+                    </p>
+
+                    <p>
+                        While E2E tests are more expensive to write and maintain than unit tests, they provide invaluable protection against regression bugs in critical application paths. Focus E2E testing efforts on the most important user journeys through your application.
+                    </p>
+
+                    <h2>Deployment and DevOps</h2>
+
+                    <p>
+                        Modern deployment strategies emphasize automation, reliability, and rapid iteration. Continuous Integration and Continuous Deployment (CI/CD) pipelines have become standard practice, enabling teams to ship updates quickly and safely.
+                    </p>
+
+                    <h3>Containerization with Docker</h3>
+
+                    <p>
+                        Docker containers provide consistent environments across development, testing, and production. This consistency eliminates "works on my machine" problems and simplifies deployment processes significantly.
+                    </p>
+
+                    <p>
+                        Container orchestration platforms like Kubernetes enable sophisticated deployment strategies including blue-green deployments, canary releases, and automatic scaling based on demand. These capabilities are essential for modern, high-traffic applications.
+                    </p>
+
+                    <h3>Serverless Architecture</h3>
+
+                    <p>
+                        Serverless platforms like AWS Lambda, Vercel, and Netlify have revolutionized web application deployment. By abstracting away server management, these platforms allow developers to focus entirely on application code while benefiting from automatic scaling and pay-per-use pricing.
+                    </p>
+
+                    <p>
+                        Edge computing takes serverless further by running code closer to users, reducing latency and improving global performance. This approach is particularly valuable for applications with worldwide user bases requiring consistent fast performance.
+                    </p>
+
+                    <h2>Future Trends and Emerging Technologies</h2>
+
+                    <p>
+                        The web development landscape continues to evolve rapidly. Staying informed about emerging trends helps developers make strategic decisions about technology adoption and skill development.
+                    </p>
+
+                    <h3>WebAssembly and High-Performance Applications</h3>
+
+                    <p>
+                        WebAssembly (WASM) enables near-native performance in web browsers by compiling languages like Rust, C++, and Go to efficient bytecode. This technology opens new possibilities for computationally intensive web applications including video editing, 3D rendering, and complex simulations.
+                    </p>
+
+                    <p>
+                        As WebAssembly matures and tooling improves, we'll see more applications leveraging this technology for performance-critical features while maintaining JavaScript for application logic and user interface components.
+                    </p>
+
+                    <h3>Progressive Web Apps and Native Integration</h3>
+
+                    <p>
+                        Progressive Web Apps (PWAs) continue blurring the line between web and native applications. Modern PWAs offer offline functionality, push notifications, and home screen installation, providing app-like experiences through web technologies.
+                    </p>
+
+                    <p>
+                        The gap between web and native applications continues narrowing as new APIs provide access to device features previously limited to native apps. This convergence enables developers to build sophisticated applications that work across all platforms with a single codebase.
+                    </p>
+
+                    <h2>Conclusion</h2>
+
+                    <p>
+                        Modern web development in 2025 offers unprecedented opportunities for creating fast, secure, and engaging applications. By understanding current best practices and staying informed about emerging technologies, developers can build applications that meet today's high standards while preparing for tomorrow's innovations.
+                    </p>
+
+                    <p>
+                        Success in web development requires continuous learning and adaptation. The technologies and practices discussed in this guide provide a solid foundation, but remember that the field evolves constantly. Engage with the developer community, experiment with new tools, and never stop learning.
+                    </p>
+
+                    <p>
+                        Whether you're building a simple blog or a complex enterprise application, these principles and practices will help you create better, more maintainable code that serves users effectively. The future of web development is bright, and the tools at our disposal have never been more powerful.
+                    </p>
+                </div>
+            </article>
+
+            <!-- Sidebar -->
+            <aside class="sidebar">
+                <!-- Recent Posts Widget -->
+                <div class="sidebar-widget">
+                    <h3>📌 Recent Articles</h3>
+                    <div class="recent-post">
+                        <h4>Understanding React Server Components</h4>
+                        <p>January 12, 2025 • 8 min read</p>
+                    </div>
+                    <div class="recent-post">
+                        <h4>CSS Grid vs Flexbox: When to Use Each</h4>
+                        <p>January 10, 2025 • 6 min read</p>
+                    </div>
+                    <div class="recent-post">
+                        <h4>Building Secure APIs with Node.js</h4>
+                        <p>January 8, 2025 • 10 min read</p>
+                    </div>
+                    <div class="recent-post">
+                        <h4>Introduction to TypeScript</h4>
+                        <p>January 5, 2025 • 12 min read</p>
+                    </div>
+                </div>
+
+                <!-- Sidebar Ad -->
+                <div class="sidebar-widget" style="padding: 0; overflow: hidden;">
+                    <ins class="adsbygoogle"
+                         style="display:block;width:300px;height:600px"
+                         data-ad-client="ca-pub-3448484444007213"
+                         data-ad-slot="4567890123"></ins>
+                    <script>
+                         (adsbygoogle = window.adsbygoogle || []).push({});
+                    </script>
+                </div>
+
+                <!-- Tags Widget -->
+                <div class="sidebar-widget">
+                    <h3>🏷️ Popular Topics</h3>
+                    <div class="tag-cloud">
+                        <span class="tag">JavaScript</span>
+                        <span class="tag">React</span>
+                        <span class="tag">CSS</span>
+                        <span class="tag">Node.js</span>
+                        <span class="tag">TypeScript</span>
+                        <span class="tag">Web Design</span>
+                        <span class="tag">API</span>
+                        <span class="tag">Security</span>
+                        <span class="tag">Performance</span>
+                    </div>
+                </div>
+            </aside>
+        </div>
+    </div>
+
+    <!-- Bottom Ad -->
+    <div class="container">
+        <div class="ad-space">
+            <ins class="adsbygoogle"
+                 style="display:inline-block;width:970px;height:90px"
+                 data-ad-client="ca-pub-3448484444007213"
+                 data-ad-slot="5678901234"></ins>
+            <script>
+                 (adsbygoogle = window.adsbygoogle || []).push({});
+            </script>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>About TechInsights</h3>
+                <p>
+                    TechInsights is your trusted source for in-depth technology articles, tutorials, and industry insights. We help developers and tech enthusiasts stay current with the latest trends and best practices in web development, programming, and digital technology.
+                </p>
+            </div>
+            <div class="footer-section">
+                <h3>Categories</h3>
+                <ul class="footer-links">
+                    <li><a href="#">Web Development</a></li>
+                    <li><a href="#">JavaScript</a></li>
+                    <li><a href="#">Backend Development</a></li>
+                    <li><a href="#">DevOps</a></li>
+                    <li><a href="#">Mobile Development</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Resources</h3>
+                <ul class="footer-links">
+                    <li><a href="#">Tutorials</a></li>
+                    <li><a href="#">Code Examples</a></li>
+                    <li><a href="#">Newsletter</a></li>
+                    <li><a href="#">Privacy Policy</a></li>
+                    <li><a href="#">Contact Us</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2025 TechInsights. All rights reserved. | Empowering developers with quality content.</p>
+        </div>
+    </footer>
+</body>
+</html>
