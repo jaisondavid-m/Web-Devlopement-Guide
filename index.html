@@ -259,6 +259,84 @@
             text-align: center;
         }
 
+        /* Cookie Consent Banner */
+        .cookie-consent {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: #1a1a2e;
+            color: white;
+            padding: 20px;
+            box-shadow: 0 -2px 10px rgba(0,0,0,0.3);
+            z-index: 9999;
+            display: none;
+        }
+
+        .cookie-consent.show {
+            display: block;
+        }
+
+        .cookie-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        .cookie-text {
+            flex: 1;
+            min-width: 300px;
+        }
+
+        .cookie-text p {
+            margin: 0;
+            font-size: 14px;
+            line-height: 1.6;
+        }
+
+        .cookie-text a {
+            color: #00adb5;
+            text-decoration: underline;
+        }
+
+        .cookie-buttons {
+            display: flex;
+            gap: 10px;
+        }
+
+        .cookie-btn {
+            padding: 10px 25px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: 600;
+            transition: all 0.3s;
+        }
+
+        .cookie-accept {
+            background: #00adb5;
+            color: white;
+        }
+
+        .cookie-accept:hover {
+            background: #009aa1;
+        }
+
+        .cookie-decline {
+            background: transparent;
+            color: white;
+            border: 2px solid white;
+        }
+
+        .cookie-decline:hover {
+            background: rgba(255,255,255,0.1);
+        }
+
         /* Footer */
         footer {
             background: #1a1a2e;
@@ -338,10 +416,37 @@
             .nav-menu {
                 display: none;
             }
+
+            .cookie-content {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .cookie-buttons {
+                width: 100%;
+                justify-content: center;
+            }
         }
     </style>
 </head>
 <body>
+    <!-- Cookie Consent Banner -->
+    <div class="cookie-consent" id="cookieConsent">
+        <div class="cookie-content">
+            <div class="cookie-text">
+                <p>
+                    🍪 We use cookies to personalize content and ads, to provide social media features and to analyze our traffic. 
+                    We also share information about your use of our site with our advertising partners. 
+                    <a href="privacy-policy.html">Learn more</a>
+                </p>
+            </div>
+            <div class="cookie-buttons">
+                <button class="cookie-btn cookie-accept" onclick="acceptCookies()">Accept All</button>
+                <button class="cookie-btn cookie-decline" onclick="declineCookies()">Decline</button>
+            </div>
+        </div>
+    </div>
+
     <!-- Header -->
     <header>
         <nav>
@@ -762,5 +867,36 @@ function DataFetcher() {
             <p>&copy; 2025 TechInsights. All rights reserved. | Empowering developers with quality content.</p>
         </div>
     </footer>
+
+    <!-- Cookie Consent Script -->
+    <script>
+        // Check if user has already made a choice
+        window.addEventListener('load', function() {
+            const cookieConsent = localStorage.getItem('cookieConsent');
+            if (!cookieConsent) {
+                document.getElementById('cookieConsent').classList.add('show');
+            }
+        });
+
+        // Accept cookies
+        function acceptCookies() {
+            localStorage.setItem('cookieConsent', 'accepted');
+            document.getElementById('cookieConsent').classList.remove('show');
+            
+            // Initialize ads after consent
+            if (typeof adsbygoogle !== 'undefined') {
+                (adsbygoogle = window.adsbygoogle || []).push({});
+            }
+        }
+
+        // Decline cookies
+        function declineCookies() {
+            localStorage.setItem('cookieConsent', 'declined');
+            document.getElementById('cookieConsent').classList.remove('show');
+            
+            // Use non-personalized ads
+            console.log('User declined cookies - using non-personalized ads');
+        }
+    </script>
 </body>
 </html>
